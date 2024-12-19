@@ -20,24 +20,18 @@ public record Hotel
 
 public class HotelDB
  {
- 	public static void Test()  
+ 	public static List<Hotel> getJson()  
     {  
-        List<Hotel> source = new List<Hotel>();  
-
+    	List<Hotel> hotels = new List<Hotel>();
         using (StreamReader r = new StreamReader("./hotels.json"))  
         {  
             string json = r.ReadToEnd();
-            Console.Write(json);
-            source = JsonSerializer.Deserialize<List<Hotel>>(json);
-            Console.Write(source);
+            hotels = JsonSerializer.Deserialize<List<Hotel>>(json);
         }
+        return hotels;
     }  
-   private static List<Hotel> _hotels = new List<Hotel>()
-   {
-     new Hotel{ id=1, name="Seaside Paradise", location="Maldives", rating=4.9 },
-     new Hotel{ id=2, name="Cooperaor", location="Ukraine", rating=2.8 },
-   };
-
+   private static List<Hotel> _hotels = getJson();
+  
    public static List<Hotel> GetHotels() 
    {
      return _hotels;
@@ -45,6 +39,7 @@ public class HotelDB
 
    public static Hotel ? GetHotel(int id) 
    {
+   	 getJson();
      return _hotels.SingleOrDefault(hotel => hotel.id == id);
    } 
  }
