@@ -30,3 +30,4 @@
 /Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.csproj.Up2Date
+/Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/hotels.json

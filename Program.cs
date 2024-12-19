@@ -19,7 +19,9 @@ if (app.Environment.IsDevelopment())
       c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotels API V1");
    });
 }
+
+
 app.MapGet("/hotels", () => HotelDB.GetHotels());    
 app.MapGet("/", () => "Hello World!");
-    
+app.MapGet("/test", () => HotelDB.Test());
 app.Run();

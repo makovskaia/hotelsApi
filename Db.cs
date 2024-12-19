@@ -1,4 +1,6 @@
 namespace HotelStore.DB;
+using System.Text.Json;
+
 public record Room
 	{
 		public string ? roomType {get; set;} 
@@ -18,6 +20,18 @@ public record Hotel
 
 public class HotelDB
  {
+ 	public static void Test()  
+    {  
+        List<Hotel> source = new List<Hotel>();  
+
+        using (StreamReader r = new StreamReader("./hotels.json"))  
+        {  
+            string json = r.ReadToEnd();
+            Console.Write(json);
+            source = JsonSerializer.Deserialize<List<Hotel>>(json);
+            Console.Write(source);
+        }
+    }  
    private static List<Hotel> _hotels = new List<Hotel>()
    {
      new Hotel{ id=1, name="Seaside Paradise", location="Maldives", rating=4.9 },
