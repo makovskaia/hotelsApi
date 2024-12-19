@@ -23,3 +23,10 @@
 /Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.pdb
 /Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.genruntimeconfig.cache
 /Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/ref/Hotels.dll
+/Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.csproj.AssemblyReference.cache
+/Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.MvcApplicationPartsAssemblyInfo.cs
+/Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/mawa/projects/2024/hotels/hotels/Hotels/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/mawa/projects/2024/hotels/hotels/Hotels/obj/Debug/net8.0/Hotels.csproj.Up2Date
