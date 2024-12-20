@@ -1,6 +1,6 @@
 namespace HotelStore.DB;
 using System.Text.Json;
-
+//room record not needed much i feel
 public record Room
 	{
 		public string ? roomType {get; set;} 
@@ -20,7 +20,8 @@ public record Hotel
 
 public class HotelDB
  {
- 	public static List<Hotel> getJson()  
+ 	//read data from json, return hotels list
+ 	private static List<Hotel> _getJson()  
     {  
     	List<Hotel> hotels = new List<Hotel>();
         using (StreamReader r = new StreamReader("./hotels.json"))  
@@ -29,38 +30,18 @@ public class HotelDB
             hotels = JsonSerializer.Deserialize<List<Hotel>>(json);
         }
         return hotels;
-    }  
-   private static List<Hotel> _hotels = getJson();
-  
+    }
+    //private list of hotels we store with calling getJson. there is a better way I feel
+   private static List<Hotel> _hotels = _getJson();
+  //for getting hotels from api
    public static List<Hotel> GetHotels() 
    {
      return _hotels;
    } 
-
+   //for getting hotel from api
    public static Hotel ? GetHotel(int id) 
    {
-   	 getJson();
      return _hotels.SingleOrDefault(hotel => hotel.id == id);
    } 
  }
  
- // {
- // "id": 1,
- // "name": "Seaside Paradise",
- // "location": "Maldives",
- // "rating": 4.9,
- // "imageUrl": "https://example.com/images/seaside-paradise.jpg",
- // "datesOfTravel": ["2024-01-01", "2024-01-07"],
- // "boardBasis": "All Inclusive",
- // "rooms": [
- // {
- // "roomType": "Deluxe Suite",
- // "amount": 5
- // },
- // {
- // "roomType": "Family Room",
- // "amount": 3
- // }
- // ]
-
-
