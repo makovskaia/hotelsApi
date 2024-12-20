@@ -1,6 +1,5 @@
 using Microsoft.OpenApi.Models;
 using HotelStore.DB;
-
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,13 +22,12 @@ builder.Services.AddSwaggerGen(c =>
 });
     
 var app = builder.Build();
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
 app.UseCors(MyAllowSpecificOrigins);
-app.UseAuthorization();
+// app.MapControllers();
 
-app.MapControllers();
+app.UseStatusCodePages(async statusCodeContext 
+    => await Results.Problem(statusCode: statusCodeContext.HttpContext.Response.StatusCode)
+                 .ExecuteAsync(statusCodeContext.HttpContext));
 
 if (app.Environment.IsDevelopment())
 {
@@ -40,8 +38,31 @@ if (app.Environment.IsDevelopment())
    });
 }
 
+app.UseExceptionHandler(exceptionHandlerApp 
+    => exceptionHandlerApp.Run(async context 
+        => await Results.Problem()
+                     .ExecuteAsync(context)));
 
-app.MapGet("/hotels", () => HotelDB.GetHotels()); 
-app.MapGet("/hotels/{id}", (int id) => HotelDB.GetHotel(id)); 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/hotels", () => {
+	var hotels = HotelDB.GetHotels();
+	if (hotels == null)
+    	{
+    		Results.BadRequest("Something went wrong!");
+    	}
+	return hotels;
+}); 
+app.MapGet("/hotels/{id:int}", (int id) => {
+	if(id < 0)
+	{
+		return Results.BadRequest("Wrong url");
+	}
+	var hotel = HotelDB.GetHotel(id);
+	if (hotel == null)
+    {
+        return Results.NotFound("Hotel not found");
+    }else{
+    	return Results.Ok(hotel);
+    }
+});
+
 app.Run();
